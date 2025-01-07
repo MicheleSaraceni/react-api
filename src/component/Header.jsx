@@ -1,7 +1,9 @@
 function Header() {
     return (
-        <header>
-            <h1>sono il Header </h1>
+        <header className="d-flex justify-content-center align-items-center">
+            <div>
+                <h1>React Blog Api</h1>
+            </div>
         </header>
     )
 }
