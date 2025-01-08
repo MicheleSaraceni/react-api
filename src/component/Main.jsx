@@ -9,9 +9,7 @@ function Main() {
     const [postList, setPostList] = useState([]);
     const apiURL = "http://localhost:3000/posts";
 
-    useEffect(() => {
-        getData();
-    }, []);
+    useEffect(() => { getData() }, []);
 
     function getData() {
         axios
@@ -22,13 +20,17 @@ function Main() {
             });
     }
 
+    function handleRemoveItem(id) {
+        setPostList((prevPosts) => prevPosts.filter((item) => item.id !== id));
+    }
+
     return (
         <main className="d-flex flex-column justify-content-center align-items-center">
             <h1>Lista Card </h1>
             <Form />
             <div className="d-flex justify-content-center align-items-center flex-wrap">
                 {/*cardList*/postList.map((post) => (
-                    <Card item={post} key={post.id} />
+                    <Card item={post} key={post.id} onRemove={handleRemoveItem} />
                 ))}
             </div>
         </main>
