@@ -1,6 +1,7 @@
 import Form from "./Form";
 import Card from "./Card";
-import cardList from "../data/cardList";
+import AddCard from "./addCard";
+//import cardList from "../data/cardList";
 import axios from "axios";
 import React, { useState, useEffect } from 'react';
 
@@ -21,7 +22,19 @@ function Main() {
     }
 
     function handleRemoveItem(id) {
-        setPostList((prevPosts) => prevPosts.filter((item) => item.id !== id));
+        getData();
+        // setPostList((prevPosts) => prevPosts.filter((item) => item.id !== id));
+    }
+
+
+    /**
+     * Refreshes the post list by re-fetching data from the server.
+     * This function is typically called after a new post is added to ensure the UI reflects the most current data.
+     */
+
+    function onAdd() {
+        /// Piu istruzioni
+        getData();
     }
 
     return (
@@ -33,6 +46,7 @@ function Main() {
                     <Card item={post} key={post.id} onRemove={handleRemoveItem} />
                 ))}
             </div>
+            <AddCard onAdd={onAdd} />
         </main>
     )
 }
